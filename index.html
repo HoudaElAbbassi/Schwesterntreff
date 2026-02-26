@@ -4,349 +4,737 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Schwesterntreff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green:       #2d7d6f;
-      --green-light: #e8f5f2;
-      --green-mid:   #3a9e8e;
+      --emerald:     #1b4d3e;
+      --emerald-mid: #2d7d6a;
+      --emerald-soft:#3a9e8a;
       --gold:        #c9a84c;
-      --gold-light:  #fdf6e3;
-      --text:        #2c2c2c;
-      --muted:       #6b7280;
+      --gold-light:  #e8c97a;
+      --cream:       #fdf8f2;
+      --blush:       #f0e8e2;
+      --text:        #1a1a1a;
+      --muted:       #7a7a7a;
       --white:       #ffffff;
-      --radius:      14px;
-      --shadow:      0 4px 24px rgba(0,0,0,0.08);
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #f4f8f7;
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
       color: var(--text);
-      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* ─── HEADER ─── */
-    header {
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
-      color: var(--white);
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      background: var(--emerald);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    /* Animated geometric background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-bg span {
+      position: absolute;
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 50%;
+      animation: pulse-ring 8s ease-in-out infinite;
+    }
+    .hero-bg span:nth-child(1) { width: 300px; height: 300px; top: -80px; right: -80px; animation-delay: 0s; }
+    .hero-bg span:nth-child(2) { width: 500px; height: 500px; top: -160px; right: -160px; animation-delay: 1s; }
+    .hero-bg span:nth-child(3) { width: 700px; height: 700px; top: -260px; right: -260px; animation-delay: 2s; }
+    .hero-bg span:nth-child(4) { width: 200px; height: 200px; bottom: 40px; left: -60px; animation-delay: 3s; }
+    .hero-bg span:nth-child(5) { width: 380px; height: 380px; bottom: -40px; left: -120px; animation-delay: 4s; }
+
+    @keyframes pulse-ring {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.04); }
+    }
+
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-up 10s infinite;
+    }
+    .particle:nth-child(1)  { left: 10%; animation-delay: 0s;   animation-duration: 9s; }
+    .particle:nth-child(2)  { left: 25%; animation-delay: 1.5s; animation-duration: 11s; }
+    .particle:nth-child(3)  { left: 40%; animation-delay: 3s;   animation-duration: 8s; }
+    .particle:nth-child(4)  { left: 55%; animation-delay: 4.5s; animation-duration: 12s; }
+    .particle:nth-child(5)  { left: 70%; animation-delay: 6s;   animation-duration: 9.5s; }
+    .particle:nth-child(6)  { left: 85%; animation-delay: 2s;   animation-duration: 10.5s; }
+    .particle:nth-child(7)  { left: 18%; animation-delay: 7s;   animation-duration: 8.5s; }
+    .particle:nth-child(8)  { left: 62%; animation-delay: 0.8s; animation-duration: 11.5s; }
+
+    @keyframes float-up {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.3; }
+      100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
       text-align: center;
-      padding: 3rem 1.5rem 2.5rem;
+      max-width: 640px;
+    }
+
+    .hero-ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: 0.6em;
+      margin-bottom: 1.5rem;
+      animation: fade-down 1s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 10vw, 6rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      animation: fade-down 1s ease 0.2s both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1.8rem auto;
+      animation: fade-in 1s ease 0.5s both;
+    }
+
+    .hero-subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: fade-down 1s ease 0.4s both;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: fade-in 1s ease 1.2s both;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scroll-line 2s ease-in-out infinite;
+    }
+    @keyframes scroll-line {
+      0%, 100% { transform: scaleY(1); opacity: 0.5; }
+      50% { transform: scaleY(0.5); opacity: 1; }
+    }
+
+    @keyframes fade-down {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ══════════════════════════════
+       SECTION WRAPPER
+    ══════════════════════════════ */
+    .section {
+      padding: 5rem 1.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      color: var(--emerald);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-line {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ══════════════════════════════
+       REVEAL ANIMATION
+    ══════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1),
+                  transform 0.8s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ══════════════════════════════
+       ABOUT
+    ══════════════════════════════ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .about-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .about-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(27,77,62,0.1);
+    }
+    .about-card:first-child {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-mid) 100%);
+      color: white;
+    }
+    .about-card:first-child .about-card-icon { color: var(--gold-light); }
+    .about-card:first-child p { color: rgba(255,255,255,0.82); }
+    .about-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--emerald-soft);
+    }
+    .about-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .about-card p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+    @media (max-width: 560px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-card:first-child { grid-column: auto; }
+    }
+
+    /* ══════════════════════════════
+       TERMINE
+    ══════════════════════════════ */
+    .termine-wrapper {
+      background: var(--emerald);
+      padding: 5rem 1.5rem;
       position: relative;
       overflow: hidden;
     }
-    header::before {
+    .termine-wrapper::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.03' stroke-width='1'%3E%3Crect x='10' y='10' width='60' height='60' rx='4'/%3E%3Crect x='20' y='20' width='40' height='40' rx='2'/%3E%3C/g%3E%3C/svg%3E");
       pointer-events: none;
     }
-    .ornament {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.3em;
-      opacity: 0.85;
-    }
-    header h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-    header p.subtitle {
-      margin-top: 0.5rem;
-      font-size: 1.05rem;
-      opacity: 0.88;
-    }
-
-    /* ─── MAIN ─── */
-    main {
-      max-width: 780px;
+    .termine-inner {
+      max-width: 820px;
       margin: 0 auto;
-      padding: 2rem 1.25rem 4rem;
+    }
+    .termine-inner .section-title { color: var(--white); }
+    .termine-inner .section-label { color: var(--gold-light); }
+
+    .termine-list {
       display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
+      margin-top: 0.5rem;
     }
 
-    /* ─── CARDS ─── */
-    .card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .termin-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
       overflow: hidden;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1.1rem 1.5rem;
-      border-bottom: 1px solid #eef2f1;
+    .termin-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
     }
-    .card-header .icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: var(--green-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
+    .termin-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
     }
-    .card-header h2 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--green);
+    .termin-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.2);
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
     }
-    .card-body {
-      padding: 1.4rem 1.5rem;
-    }
-
-    /* ─── INFO SECTION ─── */
-    .info-text {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: var(--text);
-    }
-
-    /* ─── CONTACT ─── */
-    .contact-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .contact-avatar {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--green), var(--green-mid));
-      color: white;
-      font-size: 1.5rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .contact-info { flex: 1; }
-    .contact-info .name {
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-    .contact-info a {
+    .termin-month-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      margin-top: 0.35rem;
-      color: var(--green);
-      text-decoration: none;
-      font-size: 0.97rem;
-      font-weight: 500;
-    }
-    .contact-info a:hover { text-decoration: underline; }
-
-    /* ─── TERMINE ─── */
-    .termine-list {
-      display: grid;
-      gap: 1rem;
-    }
-    .termin-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 1.1rem;
-      align-items: center;
-      padding: 1rem 1.1rem;
-      border-radius: 10px;
-      background: var(--green-light);
-      border-left: 4px solid var(--green-mid);
-    }
-    .termin-badge {
-      background: var(--green);
-      color: white;
-      border-radius: 8px;
-      padding: 0.45rem 0.8rem;
-      text-align: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      line-height: 1.3;
-      min-width: 58px;
-    }
-    .termin-badge .month { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .termin-content .title {
+      background: var(--gold);
+      color: var(--emerald);
+      font-size: 0.72rem;
       font-weight: 600;
-      font-size: 1rem;
-      color: var(--text);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
     }
-    .termin-content .detail {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
+    .termin-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    .termin-card p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
     }
 
-    /* ─── PDF ─── */
-    .pdf-download {
+    @media (max-width: 560px) {
+      .termine-list { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════════════
+       CONTACT
+    ══════════════════════════════ */
+    .contact-section {
+      padding: 5rem 1.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 3rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
-      padding: 1.1rem 1.3rem;
-      background: var(--gold-light);
-      border: 1.5px solid #e8d49a;
-      border-radius: 10px;
-      text-decoration: none;
-      color: var(--text);
-      transition: background 0.2s, transform 0.15s;
+      gap: 2.5rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s ease;
     }
-    .pdf-download:hover {
-      background: #faeec8;
-      transform: translateY(-2px);
+    .contact-card:hover {
+      box-shadow: 0 24px 80px rgba(27,77,62,0.12);
     }
-    .pdf-icon {
-      width: 46px;
-      height: 46px;
-      background: #e53e3e;
-      border-radius: 10px;
+
+    .contact-avatar-wrap {
+      flex-shrink: 0;
+      position: relative;
+    }
+    .contact-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-soft));
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-    .pdf-info .pdf-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
       font-weight: 600;
-      font-size: 0.97rem;
+      color: white;
     }
-    .pdf-info .pdf-hint {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
+    .contact-avatar-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px dashed rgba(201,168,76,0.4);
+      animation: spin-slow 20s linear infinite;
     }
-    .pdf-arrow {
-      margin-left: auto;
-      font-size: 1.2rem;
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .contact-info { flex: 1; }
+    .contact-info .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .contact-info .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--emerald);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .contact-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--emerald);
+      color: white;
+      text-decoration: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+    .contact-phone:hover {
+      background: var(--emerald-mid);
+      transform: translateX(4px);
+    }
+    .contact-phone-icon {
+      width: 20px; height: 20px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
     }
 
-    /* ─── FOOTER ─── */
-    footer {
-      text-align: center;
-      padding: 1.5rem 1rem 2.5rem;
+    @media (max-width: 560px) {
+      .contact-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+      }
+    }
+
+    /* ══════════════════════════════
+       PDF SECTION
+    ══════════════════════════════ */
+    .pdf-section {
+      padding: 0 1.5rem 6rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .pdf-card {
+      background: linear-gradient(135deg, #1a0a00 0%, #3d1f00 50%, #1a0a00 100%);
+      border-radius: 24px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+    .pdf-card:hover { transform: scale(1.015); }
+
+    .pdf-card-glow {
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+      top: -80px; right: -80px;
+      pointer-events: none;
+    }
+    .pdf-card-glow2 {
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      bottom: -60px; left: -40px;
+      pointer-events: none;
+    }
+
+    .pdf-icon-wrap {
+      flex-shrink: 0;
+      width: 72px; height: 72px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pdf-text {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .pdf-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .pdf-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .pdf-hint {
       font-size: 0.82rem;
-      color: var(--muted);
+      color: rgba(255,255,255,0.45);
     }
 
-    @media (max-width: 480px) {
-      header { padding: 2rem 1rem 1.8rem; }
-      .card-body { padding: 1.1rem 1.1rem; }
-      .termin-item { grid-template-columns: 1fr; gap: 0.6rem; }
+    .pdf-btn {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--emerald);
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.2s ease;
     }
+    .pdf-card:hover .pdf-btn { transform: translateY(-3px); }
+
+    @media (max-width: 560px) {
+      .pdf-card { flex-wrap: wrap; padding: 2rem 1.5rem; gap: 1.5rem; }
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: var(--emerald);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    footer strong { color: var(--gold); font-weight: 500; }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="ornament">✦ ✦ ✦</div>
-    <h1>Schwesterntreff</h1>
-    <p class="subtitle">Gemeinsam – in Glauben, Freundschaft &amp; Gemeinschaft</p>
-  </header>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="particles">
+      <div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div>
+    </div>
 
-  <main>
+    <div class="hero-content">
+      <div class="hero-ornament">✦ ✦ ✦</div>
+      <h1>Schwes<em>tern</em><br>treff</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subtitle">Gemeinsam · Im Glauben · In Gemeinschaft</p>
+    </div>
 
-    <!-- INFO -->
-    <div class="card">
-      <div class="card-header">
-        <div class="icon">🌸</div>
-        <h2>Über uns</h2>
-      </div>
-      <div class="card-body">
-        <p class="info-text">
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      Entdecken
+    </div>
+  </section>
+
+  <!-- ── ÜBER UNS ── -->
+  <section class="section reveal">
+    <p class="section-label">Willkommen</p>
+    <h2 class="section-title">Über unseren<br>Schwesterntreff</h2>
+    <div class="section-line"></div>
+
+    <div class="about-grid">
+      <div class="about-card reveal reveal-delay-1">
+        <div class="about-card-icon">🌙</div>
+        <h3>Unsere Gemeinschaft</h3>
+        <p>
           Herzlich willkommen beim Schwesterntreff! Wir sind eine Gemeinschaft von Schwestern,
-          die sich regelmäßig treffen, um gemeinsam zu lernen, zu beten und Zeit miteinander
-          zu verbringen. Jede Schwester ist herzlich willkommen – ob jung oder alt,
-          ob neu oder schon lange dabei.
+          die sich regelmäßig treffen – um gemeinsam zu lernen, zu beten und wertvolle
+          Zeit miteinander zu verbringen. Jede Schwester ist herzlich willkommen.
         </p>
       </div>
-    </div>
-
-    <!-- ANSPRECHPERSON -->
-    <div class="card">
-      <div class="card-header">
-        <div class="icon">👤</div>
-        <h2>Ansprechperson</h2>
+      <div class="about-card reveal reveal-delay-2">
+        <div class="about-card-icon">📿</div>
+        <h3>Gebet & Spiritualität</h3>
+        <p>Im gemeinsamen Gebet finden wir Kraft, Ruhe und innere Stärke. Schutzgebete und Dhikr sind fester Bestandteil unserer Treffen.</p>
       </div>
-      <div class="card-body">
-        <div class="contact-row">
-          <div class="contact-avatar">H</div>
-          <div class="contact-info">
-            <div class="name">Schwester Houda</div>
-            <a href="tel:+4915165165939">
-              📞 +49 151 65165939
-            </a>
-          </div>
+      <div class="about-card reveal reveal-delay-3">
+        <div class="about-card-icon">🤝</div>
+        <h3>Freundschaft</h3>
+        <p>Echte Freundschaften entstehen durch Zeit und Vertrauen. Unser Treff ist ein geschützter Ort für aufrichtige Begegnung.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TERMINE ── -->
+  <div class="termine-wrapper">
+    <div class="termine-inner">
+      <p class="section-label reveal">Aktuell</p>
+      <h2 class="section-title reveal">Nächste Termine</h2>
+      <div class="section-line reveal"></div>
+
+      <div class="termine-list">
+        <div class="termin-card reveal reveal-delay-1">
+          <div class="termin-num">01</div>
+          <div class="termin-month-badge">🌿 März 2025</div>
+          <h3>Tagesausflug nach Rüdesheim</h3>
+          <p>Genauer Termin wird noch bekannt gegeben</p>
+        </div>
+        <div class="termin-card reveal reveal-delay-2">
+          <div class="termin-num">02</div>
+          <div class="termin-month-badge">🌸 April 2025</div>
+          <h3>Schwesternsitzung im Verein</h3>
+          <p>Genauer Termin wird noch bekannt gegeben</p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- TERMINE -->
-    <div class="card">
-      <div class="card-header">
-        <div class="icon">📅</div>
-        <h2>Nächste Termine</h2>
+  <!-- ── KONTAKT ── -->
+  <section class="contact-section reveal">
+    <p class="section-label">Fragen & Anmeldung</p>
+    <h2 class="section-title">Ansprech&shy;person</h2>
+    <div class="section-line"></div>
+
+    <div class="contact-card">
+      <div class="contact-avatar-wrap">
+        <div class="contact-avatar">H</div>
+        <div class="contact-avatar-ring"></div>
       </div>
-      <div class="card-body">
-        <div class="termine-list">
-
-          <div class="termin-item">
-            <div class="termin-badge">
-              <div class="month">Mär</div>
-              <div>2025</div>
-            </div>
-            <div class="termin-content">
-              <div class="title">Tagesausflug nach Rüdesheim</div>
-              <div class="detail">Genauer Termin wird noch bekannt gegeben</div>
-            </div>
-          </div>
-
-          <div class="termin-item">
-            <div class="termin-badge">
-              <div class="month">Apr</div>
-              <div>2025</div>
-            </div>
-            <div class="termin-content">
-              <div class="title">Schwesternsitzung im Verein</div>
-              <div class="detail">Genauer Termin wird noch bekannt gegeben</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- SCHUTZGEBETE PDF -->
-    <div class="card">
-      <div class="card-header">
-        <div class="icon">📖</div>
-        <h2>Schutzgebete</h2>
-      </div>
-      <div class="card-body">
-        <a class="pdf-download" href="pdf/Wird Tahssin mit Übersetzung.pdf" target="_blank" download>
-          <div class="pdf-icon">PDF</div>
-          <div class="pdf-info">
-            <div class="pdf-name">Wird Tahssin mit Übersetzung</div>
-            <div class="pdf-hint">Zum Öffnen oder Herunterladen klicken</div>
-          </div>
-          <div class="pdf-arrow">↓</div>
+      <div class="contact-info">
+        <div class="label">Ansprechperson</div>
+        <div class="name">Schwester Houda</div>
+        <a class="contact-phone" href="tel:+4915165165939">
+          <span class="contact-phone-icon">📞</span>
+          +49 151 65165939
         </a>
       </div>
     </div>
+  </section>
 
-  </main>
+  <!-- ── SCHUTZGEBETE PDF ── -->
+  <section class="pdf-section reveal">
+    <p class="section-label">Zum Herunterladen</p>
+    <h2 class="section-title">Schutzgebete</h2>
+    <div class="section-line"></div>
 
+    <a class="pdf-card" href="pdf/Wird Tahssin mit Übersetzung.pdf" target="_blank" download>
+      <div class="pdf-card-glow"></div>
+      <div class="pdf-card-glow2"></div>
+      <div class="pdf-icon-wrap">📜</div>
+      <div class="pdf-text">
+        <div class="pdf-tag">PDF · Schutzgebete</div>
+        <div class="pdf-title">Wird Tahssin<br>mit Übersetzung</div>
+        <div class="pdf-hint">Tippen zum Öffnen oder Herunterladen</div>
+      </div>
+      <div class="pdf-btn">↓</div>
+    </a>
+  </section>
+
+  <!-- ── FOOTER ── -->
   <footer>
-    &copy; 2025 Schwesterntreff &nbsp;·&nbsp; Mit ♥ erstellt
+    &copy; 2025 <strong>Schwesterntreff</strong> &nbsp;·&nbsp; Mit ♥ gestaltet
   </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
