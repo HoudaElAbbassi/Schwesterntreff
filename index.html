@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schwesterntreff</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #2d7d6f;
+      --green-light: #e8f5f2;
+      --green-mid:   #3a9e8e;
+      --gold:        #c9a84c;
+      --gold-light:  #fdf6e3;
+      --text:        #2c2c2c;
+      --muted:       #6b7280;
+      --white:       #ffffff;
+      --radius:      14px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f4f8f7;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 3rem 1.5rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .ornament {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.3em;
+      opacity: 0.85;
+    }
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    header p.subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+      opacity: 0.88;
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid #eef2f1;
+    }
+    .card-header .icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .card-header h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green);
+    }
+    .card-body {
+      padding: 1.4rem 1.5rem;
+    }
+
+    /* ─── INFO SECTION ─── */
+    .info-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .contact-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--green-mid));
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info { flex: 1; }
+    .contact-info .name {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .contact-info a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.35rem;
+      color: var(--green);
+      text-decoration: none;
+      font-size: 0.97rem;
+      font-weight: 500;
+    }
+    .contact-info a:hover { text-decoration: underline; }
+
+    /* ─── TERMINE ─── */
+    .termine-list {
+      display: grid;
+      gap: 1rem;
+    }
+    .termin-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.1rem;
+      align-items: center;
+      padding: 1rem 1.1rem;
+      border-radius: 10px;
+      background: var(--green-light);
+      border-left: 4px solid var(--green-mid);
+    }
+    .termin-badge {
+      background: var(--green);
+      color: white;
+      border-radius: 8px;
+      padding: 0.45rem 0.8rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.3;
+      min-width: 58px;
+    }
+    .termin-badge .month { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .termin-content .title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .termin-content .detail {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ─── PDF ─── */
+    .pdf-download {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.3rem;
+      background: var(--gold-light);
+      border: 1.5px solid #e8d49a;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .pdf-download:hover {
+      background: #faeec8;
+      transform: translateY(-2px);
+    }
+    .pdf-icon {
+      width: 46px;
+      height: 46px;
+      background: #e53e3e;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .pdf-info .pdf-name {
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+    .pdf-info .pdf-hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+    .pdf-arrow {
+      margin-left: auto;
+      font-size: 1.2rem;
+      color: var(--gold);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem 2.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 2rem 1rem 1.8rem; }
+      .card-body { padding: 1.1rem 1.1rem; }
+      .termin-item { grid-template-columns: 1fr; gap: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="ornament">✦ ✦ ✦</div>
+    <h1>Schwesterntreff</h1>
+    <p class="subtitle">Gemeinsam – in Glauben, Freundschaft &amp; Gemeinschaft</p>
+  </header>
+
+  <main>
+
+    <!-- INFO -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon">🌸</div>
+        <h2>Über uns</h2>
+      </div>
+      <div class="card-body">
+        <p class="info-text">
+          Herzlich willkommen beim Schwesterntreff! Wir sind eine Gemeinschaft von Schwestern,
+          die sich regelmäßig treffen, um gemeinsam zu lernen, zu beten und Zeit miteinander
+          zu verbringen. Jede Schwester ist herzlich willkommen – ob jung oder alt,
+          ob neu oder schon lange dabei.
+        </p>
+      </div>
+    </div>
+
+    <!-- ANSPRECHPERSON -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon">👤</div>
+        <h2>Ansprechperson</h2>
+      </div>
+      <div class="card-body">
+        <div class="contact-row">
+          <div class="contact-avatar">H</div>
+          <div class="contact-info">
+            <div class="name">Schwester Houda</div>
+            <a href="tel:+4915165165939">
+              📞 +49 151 65165939
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMINE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon">📅</div>
+        <h2>Nächste Termine</h2>
+      </div>
+      <div class="card-body">
+        <div class="termine-list">
+
+          <div class="termin-item">
+            <div class="termin-badge">
+              <div class="month">Mär</div>
+              <div>2025</div>
+            </div>
+            <div class="termin-content">
+              <div class="title">Tagesausflug nach Rüdesheim</div>
+              <div class="detail">Genauer Termin wird noch bekannt gegeben</div>
+            </div>
+          </div>
+
+          <div class="termin-item">
+            <div class="termin-badge">
+              <div class="month">Apr</div>
+              <div>2025</div>
+            </div>
+            <div class="termin-content">
+              <div class="title">Schwesternsitzung im Verein</div>
+              <div class="detail">Genauer Termin wird noch bekannt gegeben</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHUTZGEBETE PDF -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon">📖</div>
+        <h2>Schutzgebete</h2>
+      </div>
+      <div class="card-body">
+        <a class="pdf-download" href="pdf/Wird Tahssin mit Übersetzung.pdf" target="_blank" download>
+          <div class="pdf-icon">PDF</div>
+          <div class="pdf-info">
+            <div class="pdf-name">Wird Tahssin mit Übersetzung</div>
+            <div class="pdf-hint">Zum Öffnen oder Herunterladen klicken</div>
+          </div>
+          <div class="pdf-arrow">↓</div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2025 Schwesterntreff &nbsp;·&nbsp; Mit ♥ erstellt
+  </footer>
+
+</body>
+</html>
