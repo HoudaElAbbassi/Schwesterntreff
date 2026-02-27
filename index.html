@@ -445,6 +445,58 @@
       color: rgba(255,255,255,0.5);
     }
 
+    .termin-card--highlight {
+      border-color: rgba(201,168,76,0.35);
+      background: rgba(255,255,255,0.1);
+    }
+    .termin-card--highlight::before {
+      background: linear-gradient(90deg, var(--gold-light), var(--gold));
+    }
+    .termin-soon-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      background: rgba(201,168,76,0.2);
+      color: var(--gold-light);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 0.9rem;
+      animation: pulse-badge 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.65; }
+    }
+    .termin-sub {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: -0.4rem;
+      margin-bottom: 1rem;
+    }
+    .termin-program {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-bottom: 1rem;
+    }
+    .termin-program li {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .termin-location {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.3rem;
+    }
+    .termin-note {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
     @media (max-width: 560px) {
       .termine-list { grid-template-columns: 1fr; }
     }
@@ -750,15 +802,24 @@
       <div class="section-line reveal"></div>
 
       <div class="termine-list">
-        <div class="termin-card reveal reveal-delay-1">
+        <div class="termin-card termin-card--highlight reveal reveal-delay-1">
+          <div class="termin-soon-badge">🔥 Nächste Woche</div>
           <div class="termin-num">01</div>
-          <div class="termin-month-badge">🌿 März 2025</div>
-          <h3>Tagesausflug nach Rüdesheim</h3>
-          <p>Genauer Termin wird noch bekannt gegeben</p>
+          <div class="termin-month-badge">🌙 Fr. 06. März · 17:00 Uhr</div>
+          <h3>Die Reise zum Herz</h3>
+          <p class="termin-sub">Rätselabend im Ramadan · Iftar</p>
+          <ul class="termin-program">
+            <li>🤍 Fastenbrechen</li>
+            <li>🤍 Gemeinsames Gebet</li>
+            <li>🤍 Reflexionsrunden</li>
+            <li>🤍 Übernachten &amp; Suhour</li>
+          </ul>
+          <p class="termin-location">📍 VEST e.V. · Heinrich Lübcke Str. 7, Frankfurt</p>
+          <p class="termin-note">Anmeldung bis 03. März möglich</p>
         </div>
         <div class="termin-card reveal reveal-delay-2">
           <div class="termin-num">02</div>
-          <div class="termin-month-badge">🌸 April 2025</div>
+          <div class="termin-month-badge">🌸 April 2026</div>
           <h3>Schwesternsitzung im Verein</h3>
           <p>Genauer Termin wird noch bekannt gegeben</p>
         </div>
@@ -780,9 +841,9 @@
       <div class="contact-info">
         <div class="label">Ansprechperson</div>
         <div class="name">Schwester Houda</div>
-        <a class="contact-phone" href="tel:+4915165165939">
-          <span class="contact-phone-icon">📞</span>
-          +49 151 65165939
+        <a class="contact-phone" href="https://wa.me/4915165165939" target="_blank" rel="noopener">
+          <span class="contact-phone-icon">💬</span>
+          WhatsApp schreiben
         </a>
       </div>
     </div>
