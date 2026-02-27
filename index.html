@@ -496,6 +496,31 @@
       color: var(--gold);
       font-weight: 500;
     }
+    .termin-flyer {
+      width: 100%;
+      border-radius: 12px;
+      margin: 0.8rem 0 1.1rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      display: block;
+    }
+    .termin-anmelde-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--emerald);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 100px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+    }
+    .termin-anmelde-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.5);
+    }
 
     @media (max-width: 560px) {
       .termine-list { grid-template-columns: 1fr; }
@@ -808,6 +833,7 @@
           <div class="termin-month-badge">🌙 Fr. 06. März · 17:00 Uhr</div>
           <h3>Die Reise zum Herz</h3>
           <p class="termin-sub">Rätselabend im Ramadan · Iftar</p>
+          <img class="termin-flyer" src="flyer-iftar.png" alt="Flyer: Die Reise zum Herz" />
           <ul class="termin-program">
             <li>🤍 Fastenbrechen</li>
             <li>🤍 Gemeinsames Gebet</li>
@@ -816,6 +842,9 @@
           </ul>
           <p class="termin-location">📍 VEST e.V. · Heinrich Lübcke Str. 7, Frankfurt</p>
           <p class="termin-note">Anmeldung bis 03. März möglich</p>
+          <a class="termin-anmelde-btn" href="https://iftaranmeldung.netlify.app" target="_blank" rel="noopener">
+            Jetzt anmelden →
+          </a>
         </div>
         <div class="termin-card reveal reveal-delay-2">
           <div class="termin-num">02</div>
@@ -835,15 +864,14 @@
 
     <div class="contact-card">
       <div class="contact-avatar-wrap">
-        <div class="contact-avatar">H</div>
+        <div class="contact-avatar">✉</div>
         <div class="contact-avatar-ring"></div>
       </div>
       <div class="contact-info">
         <div class="label">Ansprechperson</div>
-        <div class="name">Schwester Houda</div>
-        <a class="contact-phone" href="https://wa.me/4915165165939" target="_blank" rel="noopener">
-          <span class="contact-phone-icon">💬</span>
-          WhatsApp schreiben
+        <a class="contact-phone" href="mailto:frankfurt.schwesterntreff@gmail.com">
+          <span class="contact-phone-icon">✉️</span>
+          frankfurt.schwesterntreff@gmail.com
         </a>
       </div>
     </div>
