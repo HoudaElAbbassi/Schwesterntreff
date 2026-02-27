@@ -57,7 +57,7 @@
     }
     .hero-bg span {
       position: absolute;
-      border: 1px solid rgba(201,168,76,0.15);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 50%;
       animation: pulse-ring 8s ease-in-out infinite;
     }
@@ -80,8 +80,8 @@
     }
     .particle {
       position: absolute;
-      width: 4px; height: 4px;
-      background: var(--gold);
+      width: 5px; height: 5px;
+      background: rgba(255,255,255,0.18);
       border-radius: 50%;
       opacity: 0;
       animation: float-up 10s infinite;
@@ -110,11 +110,20 @@
     }
 
     .hero-ornament {
-      color: var(--gold);
-      font-size: 1.4rem;
-      letter-spacing: 0.6em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
       margin-bottom: 1.5rem;
       animation: fade-down 1s ease both;
+    }
+    .hero-ornament-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+    .hero-ornament-icon {
+      font-size: 1.6rem;
     }
 
     .hero h1 {
@@ -128,24 +137,35 @@
     }
 
     .hero h1 em {
-      font-style: italic;
-      color: var(--gold-light);
+      font-style: normal;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      position: relative;
+    }
+    .hero h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0; right: 0;
+      height: 3px;
+      background: rgba(255,255,255,0.35);
+      border-radius: 2px;
     }
 
     .hero-divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      width: 50px;
+      height: 2px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 2px;
       margin: 1.8rem auto;
       animation: fade-in 1s ease 0.5s both;
     }
 
     .hero-subtitle {
-      color: rgba(255,255,255,0.7);
-      font-size: 1rem;
-      font-weight: 300;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
       animation: fade-down 1s ease 0.4s both;
     }
 
@@ -642,9 +662,9 @@
     }
 
     .pdf-card {
-      background: linear-gradient(135deg, #1a0a00 0%, #3d1f00 50%, #1a0a00 100%);
+      background: var(--emerald);
       border-radius: 24px;
-      padding: 3rem;
+      padding: 2.5rem;
       display: flex;
       align-items: center;
       gap: 2rem;
@@ -652,32 +672,36 @@
       overflow: hidden;
       cursor: pointer;
       text-decoration: none;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.08);
     }
-    .pdf-card:hover { transform: scale(1.015); }
+    .pdf-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(27,77,62,0.25);
+    }
 
     .pdf-card-glow {
       position: absolute;
-      width: 300px; height: 300px;
+      width: 280px; height: 280px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
       top: -80px; right: -80px;
       pointer-events: none;
     }
     .pdf-card-glow2 {
       position: absolute;
-      width: 200px; height: 200px;
+      width: 180px; height: 180px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
       bottom: -60px; left: -40px;
       pointer-events: none;
     }
 
     .pdf-icon-wrap {
       flex-shrink: 0;
-      width: 72px; height: 72px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(201,168,76,0.3);
+      width: 68px; height: 68px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 18px;
       display: flex;
       align-items: center;
@@ -694,15 +718,15 @@
     }
     .pdf-tag {
       font-size: 0.7rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: rgba(255,255,255,0.55);
       font-weight: 500;
       margin-bottom: 0.4rem;
     }
     .pdf-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: white;
       line-height: 1.2;
@@ -710,25 +734,29 @@
     }
     .pdf-hint {
       font-size: 0.82rem;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.4);
     }
 
     .pdf-btn {
       flex-shrink: 0;
-      width: 48px; height: 48px;
+      width: 46px; height: 46px;
       border-radius: 50%;
-      background: var(--gold);
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      color: var(--emerald);
+      font-size: 1rem;
+      color: white;
       font-weight: 700;
       position: relative;
       z-index: 1;
-      transition: transform 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
-    .pdf-card:hover .pdf-btn { transform: translateY(-3px); }
+    .pdf-card:hover .pdf-btn {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-3px);
+    }
 
     @media (max-width: 560px) {
       .pdf-card { flex-wrap: wrap; padding: 2rem 1.5rem; gap: 1.5rem; }
@@ -796,7 +824,11 @@
     </div>
 
     <div class="hero-content">
-      <div class="hero-ornament">✦ ✦ ✦</div>
+      <div class="hero-ornament">
+        <span class="hero-ornament-line"></span>
+        <span class="hero-ornament-icon">🌸</span>
+        <span class="hero-ornament-line"></span>
+      </div>
       <h1>Schwe<em>stern</em><br>treff</h1>
       <div class="hero-divider"></div>
       <p class="hero-subtitle">Gemeinsam · Im Glauben · In Gemeinschaft</p>
