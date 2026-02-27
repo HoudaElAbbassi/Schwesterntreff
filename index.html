@@ -773,13 +773,12 @@
       animation: fade-in 1s ease 0.3s both;
     }
     .hero-logo img {
-      height: 48px;
+      height: 72px;
       width: auto;
-      filter: brightness(0) invert(1);
-      opacity: 0.75;
-      transition: opacity 0.2s;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
+      transition: transform 0.2s ease;
     }
-    .hero-logo img:hover { opacity: 1; }
+    .hero-logo img:hover { transform: scale(1.05); }
 
     /* ══════════════════════════════
        FOOTER
@@ -798,10 +797,10 @@
     }
     footer strong { color: var(--gold); font-weight: 500; }
     .footer-logo {
-      height: 36px;
+      height: 52px;
       width: auto;
       filter: brightness(0) invert(1);
-      opacity: 0.45;
+      opacity: 0.5;
     }
   </style>
 </head>
