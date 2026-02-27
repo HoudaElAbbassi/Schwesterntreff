@@ -186,6 +186,80 @@
     }
 
     /* ══════════════════════════════
+       HADITH QUDSI
+    ══════════════════════════════ */
+    .hadith-wrapper {
+      background: var(--cream);
+      padding: 5rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hadith-wrapper::before {
+      content: '❝';
+      position: absolute;
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14rem;
+      color: rgba(27,77,62,0.04);
+      font-family: 'Cormorant Garamond', serif;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .hadith-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hadith-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      border: 1px solid var(--gold);
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2.2rem;
+    }
+    .hadith-arabic {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      line-height: 2;
+      color: var(--emerald);
+      direction: rtl;
+      text-align: right;
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(27,77,62,0.1);
+      box-shadow: 0 8px 40px rgba(27,77,62,0.06);
+      margin-bottom: 1.8rem;
+    }
+    .hadith-divider {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.5em;
+      margin-bottom: 1.8rem;
+      opacity: 0.6;
+    }
+    .hadith-german {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+      font-style: italic;
+      line-height: 1.9;
+      color: var(--text);
+      max-width: 620px;
+      margin: 0 auto 1.2rem;
+    }
+    .hadith-source {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ══════════════════════════════
        SECTION WRAPPER
     ══════════════════════════════ */
     .section {
@@ -613,7 +687,7 @@
 
     <div class="hero-content">
       <div class="hero-ornament">✦ ✦ ✦</div>
-      <h1>Schwes<em>tern</em><br>treff</h1>
+      <h1>Schwe<em>stern</em><br>treff</h1>
       <div class="hero-divider"></div>
       <p class="hero-subtitle">Gemeinsam · Im Glauben · In Gemeinschaft</p>
     </div>
@@ -623,6 +697,21 @@
       Entdecken
     </div>
   </section>
+
+  <!-- ── HADITH QUDSI ── -->
+  <div class="hadith-wrapper">
+    <div class="hadith-inner reveal">
+      <div class="hadith-label">Hadith Qudsi</div>
+      <div class="hadith-arabic">
+        حَقَّتْ مَحَبَّتِي لِلْمُتَحَابِّينَ فِيَّ، وَحَقَّتْ مَحَبَّتِي لِلْمُتَوَاصِلِينَ فِيَّ، وَحَقَّتْ مَحَبَّتِي لِلْمُتَزَاوِرِينَ فِيَّ، وَحَقَّتْ مَحَبَّتِي لِلْمُتَبَاذِلِينَ فِيَّ
+      </div>
+      <div class="hadith-divider"><span>✦</span></div>
+      <div class="hadith-german">
+        „Meine Liebe gilt wahrhaftig denen, die sich um Meinetwillen lieben; Meine Liebe gilt wahrhaftig denen, die sich um Meinetwillen verbinden; Meine Liebe gilt wahrhaftig denen, die sich um Meinetwillen besuchen; und Meine Liebe gilt wahrhaftig denen, die um Meinetwillen füreinander geben."
+      </div>
+      <div class="hadith-source">— Allah ﷻ (Hadith Qudsi, überliefert von Imam Ahmad &amp; Malik)</div>
+    </div>
+  </div>
 
   <!-- ── ÜBER UNS ── -->
   <section class="section reveal">
